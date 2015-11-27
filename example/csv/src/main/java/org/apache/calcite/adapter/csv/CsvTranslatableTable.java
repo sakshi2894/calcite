@@ -53,7 +53,12 @@ public class CsvTranslatableTable extends CsvTable
   public Enumerable<Object> project(final int[] fields) {
     return new AbstractEnumerable<Object>() {
       public Enumerator<Object> enumerator() {
-        return new CsvEnumerator<Object>(file, fieldTypes, fields);
+        try {
+          return new quboleEnumerator<Object>(file, fieldTypes, fields);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        return null;
       }
     };
   }

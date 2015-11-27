@@ -60,8 +60,12 @@ public class CsvFilterableTable extends CsvTable
     final int[] fields = CsvEnumerator.identityList(fieldTypes.size());
     return new AbstractEnumerable<Object[]>() {
       public Enumerator<Object[]> enumerator() {
-        return new CsvEnumerator<Object[]>(file, filterValues,
-            new CsvEnumerator.ArrayRowConverter(fieldTypes, fields));
+        try {
+          return new quboleEnumerator<Object[]>(file, new quboleEnumerator.ArrayRowConverter(fieldTypes, fields));
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        return null;
       }
     };
   }

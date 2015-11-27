@@ -43,11 +43,16 @@ public class CsvScannableTable extends CsvTable
   }
 
   public Enumerable<Object[]> scan(DataContext root) {
-    final int[] fields = CsvEnumerator.identityList(fieldTypes.size());
+    final int[] fields = quboleEnumerator.identityList(fieldTypes.size());
     return new AbstractEnumerable<Object[]>() {
       public Enumerator<Object[]> enumerator() {
-        return new CsvEnumerator<Object[]>(file,
-            null, new CsvEnumerator.ArrayRowConverter(fieldTypes, fields));
+        try {
+          return new quboleEnumerator<Object[]>(file, new quboleEnumerator.ArrayRowConverter(fieldTypes, fields));
+        } catch (Exception e) {
+          System.out.println("Error in initializing enumerator");
+          e.printStackTrace();
+        }
+        return null;
       }
     };
   }

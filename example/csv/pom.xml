@@ -75,6 +75,12 @@ limitations under the License.
       <artifactId>sqlline</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.qubole.qds-sdk-java</groupId>
+      <artifactId>qds-sdk-java</artifactId>
+      <version>0.6.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>

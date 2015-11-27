@@ -46,10 +46,10 @@ public abstract class CsvTable extends AbstractTable {
     }
     if (fieldTypes == null) {
       fieldTypes = new ArrayList<CsvFieldType>();
-      return CsvEnumerator.deduceRowType((JavaTypeFactory) typeFactory, file,
+      return quboleEnumerator.deduceRowType((JavaTypeFactory) typeFactory, file,
           fieldTypes);
     } else {
-      return CsvEnumerator.deduceRowType((JavaTypeFactory) typeFactory,
+      return quboleEnumerator.deduceRowType((JavaTypeFactory) typeFactory,
           file,
           null);
     }
